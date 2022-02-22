@@ -7,8 +7,15 @@ class FunComponent extends LitElement {
     constructor() {
         // Calling super to get the litElement constructor
         super()
-        this.buttonText = "Click Me"
+        this.btnText = "Button";
+        this.titleText = "Title Goes Here";
+        
     }
+
+    static properties = {
+        btnText: { attribute: 'button-text' },
+        titleText: { attribute: 'title-text'}
+      }
     // css styling
     static styles = css`
     .btn {
@@ -93,7 +100,26 @@ class FunComponent extends LitElement {
             this._squareDiv.classList.add("animation-forwards");
         }
         this.requestUpdate();
+        
+        // A custom event that fires outside of the shadowDOM
+        const options = {
+            detail: {message: 'I was clicked'},
+            bubbles: true,
+            composed: true,
+          };
+          this.dispatchEvent(new CustomEvent('button-click', options));
     }
+
+    
+
+    // connectedCallback() {
+    //     super.connectedCallback();
+    //     window.addEventListener('click', this._handleClick);
+    // }
+    // disconnectedCallback() {
+    //     window.removeEventListener('click', this._handleClick);
+    //     super.disconnectedCallback();
+    // }
 
     /* 
     The render() method defines your component's internal DOM.
@@ -103,9 +129,9 @@ class FunComponent extends LitElement {
     render() {
         return html`
         <div class="container">
-            <h2 class="title">I can spin!</h2>
+            <h2 class="title">${this.titleText}</h2>
             <div class="square"><p class="smiley">:)</p></div>
-            <button @click=${this.handleClick} type="button" class="btn">${this.buttonText}</button>
+            <button @click=${this.handleClick} type="button" class="btn">${this.btnText}</button>
         </div>
         `
     }

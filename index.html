@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script type="module" src="./funComponent.js"></script>
+    <link rel="stylesheet" href="./static/main.css">
     <style type="text/css">
         .main {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -18,7 +20,10 @@
 </head>
 <body>
     <div class="main">
-        <fun-component></fun-component>
+        <p class="popUp">Button was clicked!</p>
+        <fun-component button-text="Click Me" title-text="I Can Spin!"></fun-component>
     </div>
+
+    <script src="./anotherScript.js"></script>
 </body>
 </html>
