@@ -16,6 +16,7 @@ class FunComponent extends LitElement {
         btnText: { attribute: 'button-text' },
         titleText: { attribute: 'title-text'}
       }
+      
     // css styling
     static styles = css`
     .btn {
@@ -84,14 +85,14 @@ class FunComponent extends LitElement {
     }
   `;
 
-    // Get our square div and button from the shadowDOM
+    // Select our square div from the shadowDOM
     get _squareDiv() {
         return this.renderRoot.querySelector('.square');
     }
 
     // Method for handling when our button gets clicked
     handleClick() {
-        // If button
+        // Statement for handling animation
         if (this._squareDiv.classList.contains("animation-forwards")) {
             this._squareDiv.classList.remove("animation-forwards");
             this._squareDiv.classList.add("animation-reverse");
@@ -107,25 +108,11 @@ class FunComponent extends LitElement {
             bubbles: true,
             composed: true,
           };
+        // Dispatch our custom event
           this.dispatchEvent(new CustomEvent('button-click', options));
     }
 
-    
-
-    // connectedCallback() {
-    //     super.connectedCallback();
-    //     window.addEventListener('click', this._handleClick);
-    // }
-    // disconnectedCallback() {
-    //     window.removeEventListener('click', this._handleClick);
-    //     super.disconnectedCallback();
-    // }
-
-    /* 
-    The render() method defines your component's internal DOM.
-    The html tag function processes a template literal and returns a TemplateResult—an object
-    that describes the HTML for Lit to render. Every Lit component should include a render() method.
-    */
+    // Render the internal DOM
     render() {
         return html`
         <div class="container">
